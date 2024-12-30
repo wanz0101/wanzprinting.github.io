@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wan Z Printing</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-image: url('images1/header4.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 250px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        header h1 {
+            font-size: 3.5em;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            padding: 20px;
+        }
+        .hero {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+			object-fit: cover;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: flex;
+        }
+        .hero img:first-child {
+            display: block;
+        }
+		.about-header {
+            background-color: blue;
+            color: white;
+            padding: 20px 0;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 auto 30px;
+            width: 100%;
+        }
+        .about {
+            text-align: center;
+            margin-bottom: 30px;
+			font-weight: bold;
+			font-size: 20px;
+        }
+        .about img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+        }
+        .section {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .services-container {
+            display: flex;
+        }
+        .services-menu {
+            flex: 1;
+            max-width: 250px;
+            margin-right: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #012174;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .services-menu h3 {
+            margin-top: 0;
+			text-align: center;
+			
+        }
+        .services-menu ul {
+            list-style: none;
+            padding: 0;
+			border: 1px solid #012174;
+			text-align: center;
+			box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+        .services-menu ul li {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        .services-content {
+            flex: 3;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .services-content .grid-item {
+            border: 1px solid #ccc;
+            padding: 50px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .services-content .grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
+        }
+        .services-content .grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .services-content .grid-item h4 {
+            font-size: 1.2em;
+            color: #333;
+        }
+        .services-content .grid-item p {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+		/* Gallery */
+        .gallery {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .gallery-header {
+            background-color: blue;
+            color: white;
+            padding: 20px 0;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 auto 30px;
+            width: 100%;
+        }
+		.gallery-subheader {
+            font-size: 26px;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 30px;
+			}
+
+       .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+			margin-top: 30px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .video-container video {
+            max-width: 100%;
+            height: auto;
+        }
+		
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        /* WhatsApp Button */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            padding: 15px;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            cursor: pointer;
+        }
+        .whatsapp a {
+            color: white;
+            text-decoration: none;
+        }
+		
+		 /* Contact Us Section */
+        .contact-us {
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+            background-color: #222444;
+        }
+        .contact-info {
+            width: 45%;
+            background-color: #eb0d0d;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			
+        }
+        .contact-info h3 {
+            margin-top: 0;
+        }
+		.contact-container {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        max-width: 800px;
+        margin: 0 auto;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+		}
+
+		.contact-container h2 {
+        text-align: center;
+        color: #7a81ff;
+        font-size: 40px;
+        margin-bottom: 20px;
+		}
+
+		.contact-container p {
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 10px;
+		}
+
+		.location-gap {
+        height: 30px;
+		}
+
+		.location {
+        margin-top: 20px;
+        text-align: center;
+		}
+
+		.location iframe {
+        border-radius: 8px;
+		}	
+    
+		
+    </style>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <nav>
+        <a href="#" onclick="showSection('home')">Home</a>
+        <a href="#" onclick="showSection('services')">Servis</a>
+        <a href="#" onclick="showSection('gallery')">Gallery</a>
+        <a href="#" onclick="showSection('about-us')">About Us</a>
+        <a href="#" onclick="showSection('contact-us')">Contact Us</a>
+    </nav>
+    <div class="container">
+        <div id="home" class="section active">
+            <div class="hero">
+                <img src="images1/gm1.jpg" alt="Printing example 1">
+                <img src="images1/gm2.jpg" alt="Printing example 2">
+                <img src="images1/gm3.jpg" alt="Printing example 3">
+            </div>
+            <div class="about">
+			 <div class="about">
+                <div class="about-header">We Are a Professional Printing Company</div>
+                <img src="images1/in1.jpg" alt="About Us">
+                <p>Wan Z Printing is dedicated to delivering exceptional printing services tailored to meet diverse customer needs.<br>
+				We utilize state-of-the-art technology to produce vibrant, high-quality results for every project.<br>
+				Our professional team works closely with clients to ensure their vision becomes a reality.<br>
+				Timely delivery, competitive pricing, and unmatched reliability make us your trusted printing partner.</p>
+            </div>
+			 <!-- WhatsApp Link Button -->
+    <div style="text-align: center; margin: 20px 0;">
+        <a href="https://wa.me/601111830124" target="_blank" style="
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        ">
+            💬 Chat with Us on WhatsApp
+        </a>
+    </div>
+	<center>
+	<img src="images1/in2.jpg" alt="About Us">
+				
+			</div>
+        </div>   
+</center>
+		<div id="services" class="section">
+		<h2>We Provide Services</h2>
+			
+            <div class="services-container">
+                <div class="services-menu">
+                    <h3>Design and Marketing</h3>
+                    <ul>
+                        <li onclick="filterServices('design')">Design</li>
+                    </ul>
+                    <h3>Packaging and Event Items</h3>
+                    <ul>
+                        <li onclick="filterServices('packaging')">Packaging</li>
+                    </ul>
+                    <h3>Books and Cards</h3>
+                    <ul>
+                        <li onclick="filterServices('books')">Books</li>
+                    </ul>
+					 <h3>Printing and Stationery</h3>
+                    <ul>
+                        <li onclick="filterServices('print')">Print Essentials</li>
+                    </ul>
+                </div>
+                <div class="services-content" id="services-content">
+                    <!-- Content dynamically updated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        <div id="gallery" class="section">  
+        <center>   
+		<div class="gallery-header">Our Gallery</div>
+		</center>
+        <div class="gallery-subheader" style="text-align: center;">Images</div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="images1/g1.jpg" alt="Gallery Image 1"></div>
+            <div class="gallery-item"><img src="images1/g2.jpg" alt="Gallery Image 2"></div>
+            <div class="gallery-item"><img src="images1/g3.jpg" alt="Gallery Image 3"></div>
+            <div class="gallery-item"><img src="images1/g4.jpg" alt="Gallery Image 4"></div>
+        </div>
+		<br><br>
+        <div class="gallery-subheader" style="text-align: center;">Video</div>
+        <div class="gallery-grid">
+            <div class="video-container">
+                <video controls>
+                    <source src="images1/v1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-container">
+                <video controls>
+                    <source src="images1/v2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+			<div class="video-container">
+                <video controls>
+                    <source src="images1/v3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+			<div class="video-container">
+                <video controls>
+                    <source src="images1/v4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+			
+        </div>
+        <div id="about-us" class="section">
+		<center>
+           <div class="about-content" style="display: flex; align-items: center; justify-content: center; margin-top: 0px;">		</div>
+	        <img src="images1/abt11.jpg" alt="About Us" style="max-width: 1300px; margin-right: 0px; border-radius: 10px; box-shadow: 20px 20px 100px rgba(0,0,0,0.1);">		
+            <p style="max-width: 600px; font-size: 1em; color: #333;"> </center>   </div>
+        </div>
+		
+        <div id="contact-us" class="section">
+		<div class="contact-container" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;">
+        <!-- Contact Information -->
+        <div class="contact-info" style="flex: 1; margin-right: 20px;">
+		
+            <h3 style="color:black; background-color: #ffffff; padding: 10px; border-radius: 5px;text-align: center;">Contact Us</h3>
+            <p style="color:white; font-size: 16px;">For any reservations or inquiries, please contact us through:</p>
+            <p style="color:white; font-size: 16px;">Email: <a href="mailto:info@wanzprinting.com" style="color: #012174; text-decoration: underline;">wanzprinting01@gmail.com</a></p>
+            <p style="color:white; font-size: 16px;">Phone: <span style="color: #012174;">+601111830124</span></p>
+            <p style="color:white; font-size: 16px;">Facebook: <a href="https://web.facebook.com/wanzprinting/?locale=ms_MY&_rdc=1&_rdr#" style="color: #012174; text-decoration: underline;">Wan Z Creative</a></p>
+            <p style="color:white; font-size: 16px;">TikTok: <a href="https://www.tiktok.com/@wan.z.printing" style="color: #012174; text-decoration: underline;">Wan Z Creative</a></p>
+            <p style="color:white; font-size: 16px;">Or click the button below to chat with us directly:</p>
+            <center>
+			<div style="margin-top: 20px;">
+                <a href="https://wa.me/601111830124" target="_blank" style="
+                    display: inline-block;
+                    background-color: #25D366;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-size: 18px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                ">
+                    ✓ Chat with Us on WhatsApp
+                </a>
+            </div>
+        </div>
+		</center>
+
+        <!-- Map Section -->
+        <div id="map" class="map" style="flex: 1;">
+            <h3 style="color: #012174; font-size: 20px; margin-bottom: 10px;">Our Location:</h3>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3139.8070341564135!2d103.13922737372263!3d5.32399773594168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31b7bf51218db357%3A0xc34cae5f37400113!2sWAN%20Z%20PRINTING%20SDN%20BHD!5e1!3m2!1sen!2smy!4v1735401965231!5m2!1sen!2smy" 
+                    width="100%" height="450" style="border: 2px solid #ddd; border-radius: 10px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2024 Wan Z Printing. All Rights Reserved.</p>
+    </footer>
+    <!-- WhatsApp Button -->
+    <div class="whatsapp">
+        <a href="https://wa.me/60123456789" target="_blank">💬</a>
+    </div>
+
+    <script>
+	
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        function filterServices(category) {
+            const servicesContent = document.getElementById('services-content');
+            servicesContent.innerHTML = '';
+
+            let services = [];
+
+            if (category === 'design') {
+                services = [
+                    { name: 'Poster', image: 'images1/14.jpg', description: 'High-quality poster printing service.' },
+                    { name: 'Calendar', image: 'images1/15.jpg', description: 'Personalized calendar printing service.' },
+                    { name: 'Catalog', image: 'images1/16.jpg', description: 'Product catalog printing and design.' },
+                    { name: 'Sticker', image: 'images1/18.jpg', description: 'Custom sticker printing for marketing.' },
+                    { name: 'Banners And Banting', image: 'images1/21.jpg', description: 'Large-format banner printing.' },
+					{ name: 'Rubberstamp', image: 'images1/19.jpg', description: 'Customized rubber stamp printing.' },
+					{ name: 'Nametag', image: 'images1/20.jpg', description: 'Personalized name tag printing.' },
+					{ name: 'Stamping', image: 'images1/22.jpg', description: 'Custom stamp creation and printing.' },
+                ];
+            } else if (category === 'packaging') {
+                services = [
+                    { name: 'Paper Bag', image: 'images1/5.jpg', description: 'Eco-friendly paper bags.' },
+                    { name: 'Wedding Card', image: 'images1/6.jpg', description: 'Elegant wedding cards.' },
+                    { name: 'Souvenir', image: 'images1/8.jpg', description: 'Customized souvenirs.' },
+					{ name: 'Surah Yassin', image: 'images1/7.jpg', description: 'Quranic Surah printing for gifting.' },
+                ];
+            } else if (category === 'books') {
+                services = [
+                    { name: 'Books', image: 'images1/9.jpg', description: 'Books printing for all purposes.' },
+                    { name: 'Gift Cards', image: 'images1/10.jpg', description: 'Personalized gift cards.' },
+                    { name: 'Magazines', image: 'images1/11.jpg', description: 'Magazine printing with high-quality finish.' },
+					{ name: 'School Books', image: 'images1/12.jpg', description: 'Educational book printing and binding.' },
+                ];
+            } else if (category === 'print') {
+                services = [
+                    { name: 'Business Card', image: 'images1/1.jpg', description: 'Books printing for all purposes.' },
+                    { name: 'Invoices', image: 'images1/invoices.jpg', description: 'Personalized gift cards.' },
+                    { name: 'Receipts', image: 'images1/2.jpg', description: 'Magazine printing with high-quality finish.' },
+					{ name: 'Certificates', image: 'images1/3.jpg', description: 'Magazine printing with high-quality finish.' },
+					{ name: 'Folders', image: 'images1/4.jpg', description: 'Magazine printing with high-quality finish.' },
+                ];
+            }
+
+            services.forEach(service => {
+                const item = document.createElement('div');
+                item.className = 'grid-item';
+
+                const img = document.createElement('img');
+                img.src = service.image;
+                img.alt = service.name;
+
+                const title = document.createElement('h4');
+                title.textContent = service.name;
+
+                const desc = document.createElement('p');
+                desc.textContent = service.description;
+
+                item.appendChild(img);
+                item.appendChild(title);
+                item.appendChild(desc);
+
+                servicesContent.appendChild(item);
+            });
+        }
+
+        let currentImageIndex = 0;
+        const heroImages = document.querySelectorAll('.hero img');
+
+        setInterval(() => {
+            heroImages[currentImageIndex].style.display = 'none';
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroImages[currentImageIndex].style.display = 'block';
+        }, 3000);
+   
+	</script>
+	
+</body>
+</html>
